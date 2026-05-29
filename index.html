@@ -103,38 +103,37 @@ iframe {
     </div>
   </div>
 </section>
-
 <section>
-  <div class="box">
-   <section>
   <div class="box">
     <h2>💌 Confirma a tua presença</h2>
 
-    <form action="https://formspree.io/f/SEUCODIGO" method="POST">
+    <form action="https://formspree.io/f/rafaelfhc18/Carolina.Rafael" method="POST">
 
       <!-- Nome principal -->
       <input type="text" name="nome" placeholder="O teu nome" required><br><br>
 
-      <!-- Escolha -->
-      <label>
-        <input type="radio" name="presenca" value="sozinho" onclick="toggleAcompanhante(false)" required>
-        Vou sozinho
-      </label><br><br>
+      <!-- Número de acompanhantes -->
+      <label>Quantos acompanhantes vais trazer?</label><br><br>
 
-      <label>
-        <input type="radio" name="presenca" value="acompanhado" onclick="toggleAcompanhante(true)">
-        Vou com acompanhante
-      </label><br><br>
+      <select name="numero_acompanhantes" onchange="criarCampos(this.value)">
+        <option value="0">Só eu</option>
+        <option value="1">1 acompanhante</option>
+        <option value="2">2 acompanhantes</option>
+        <option value="3">3 acompanhantes</option>
+        <option value="4">4 acompanhantes</option>
+        <option value="5">5 acompanhantes</option>
+      </select>
 
-      <!-- Campo acompanhante (escondido inicialmente) -->
-      <div id="acompanhante" style="display:none;">
-        <input type="text" name="acompanhante" placeholder="Nome do acompanhante"><br><br>
-      </div>
+      <br><br>
+
+      <!-- Campos dinâmicos -->
+      <div id="acompanhantes"></div>
 
       <button type="submit">Confirmar</button>
-
     </form>
   </div>
+</section>
+
 </section>
 
   </form>
@@ -172,12 +171,24 @@ const countdown = setInterval(() => {
 }, 1000);
 </script>
 
-  <script>
-function toggleAcompanhante(mostrar) {
-  const campo = document.getElementById("acompanhante");
-  campo.style.display = mostrar ? "block" : "none";
+<script>
+function criarCampos(numero) {
+  const container = document.getElementById("acompanhantes");
+  container.innerHTML = "";
+
+  for (let i = 1; i <= numero; i++) {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.name = "acompanhante_" + i;
+    input.placeholder = "Nome do acompanhante " + i;
+    input.style.display = "block";
+    input.style.margin = "10px auto";
+
+    container.appendChild(input);
+  }
 }
 </script>
+
   
 </body>
 </html>
