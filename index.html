@@ -106,12 +106,38 @@ iframe {
 
 <section>
   <div class="box">
+   <section>
+  <div class="box">
     <h2>💌 Confirma a tua presença</h2>
 
-    <form action="https://formspree.io/f/yourcode" method="POST">
+    <form action="https://formspree.io/f/SEUCODIGO" method="POST">
+
+      <!-- Nome principal -->
       <input type="text" name="nome" placeholder="O teu nome" required><br><br>
+
+      <!-- Escolha -->
+      <label>
+        <input type="radio" name="presenca" value="sozinho" onclick="toggleAcompanhante(false)" required>
+        Vou sozinho
+      </label><br><br>
+
+      <label>
+        <input type="radio" name="presenca" value="acompanhado" onclick="toggleAcompanhante(true)">
+        Vou com acompanhante
+      </label><br><br>
+
+      <!-- Campo acompanhante (escondido inicialmente) -->
+      <div id="acompanhante" style="display:none;">
+        <input type="text" name="acompanhante" placeholder="Nome do acompanhante"><br><br>
+      </div>
+
       <button type="submit">Confirmar</button>
+
     </form>
+  </div>
+</section>
+
+  </form>
 
   </div>
 </section>
@@ -146,5 +172,12 @@ const countdown = setInterval(() => {
 }, 1000);
 </script>
 
+  <script>
+function toggleAcompanhante(mostrar) {
+  const campo = document.getElementById("acompanhante");
+  campo.style.display = mostrar ? "block" : "none";
+}
+</script>
+  
 </body>
 </html>
